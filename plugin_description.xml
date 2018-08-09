@@ -1,0 +1,6 @@
+<library path="lib/libcamera_robot_calibration">
+  <class name="camera_robot_calibration/Calibration" type="camera_robot_calibration::CalibrationPanel"
+         base_class_type="rviz::Panel">
+    <description>A panel widget with buttons corresponding to interactively calibrate a camera.</description>
+  </class>
+</library>

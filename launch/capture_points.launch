@@ -5,12 +5,21 @@
   <arg name="robot_ee_frame_name"   default="/lwr_arm_link_7"/>
   <arg name="marker_frame_name"     default="/marker_frame"/>
 
+  <!-- run rviz visualization for interactive calibration -->
+  <arg name="rviz" default="false" />
+
   <!-- Run the node to capture points -->
   <node name="capture_points" pkg="camera_robot_calibration"
-  type="camera_robot_calibration.py"/>
+  type="camera_robot_calibration.py" output="screen">
     <param name="base_frame_name"      type="str"  value="$(arg base_frame_name)"/>
     <param name="camera_frame_name"    type="str"  value="$(arg camera_frame_name)"/>
     <param name="robot_ee_frame_name"  type="str"  value="$(arg robot_ee_frame_name)"/>
     <param name="marker_frame_name"    type="str"  value="$(arg marker_frame_name)"/>
+  </node>
+
+  <group if="$(arg rviz)">
+    <node pkg="rviz" type="rviz" name="rviz" args="-d $(find camera_robot_calibration)/rviz/calibration.rviz"
+      output="screen" />
+  </group>
 
 </launch>
